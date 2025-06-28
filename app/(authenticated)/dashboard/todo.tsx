@@ -1,23 +1,22 @@
-"use client";
+"use client"
 
-import { useTransition } from "react";
-import { InferSelectModel } from "drizzle-orm";
+import { useTransition } from "react"
+import type { InferSelectModel } from "drizzle-orm"
 
-import * as schema from "@/db/schema";
-import { removeTodo, toggleTodo } from "./actions";
+import type * as schema from "@/db/schema"
 
-type Todo = InferSelectModel<typeof schema.todos>;
+type Todo = InferSelectModel<typeof schema.todos>
 
 export function Todo({
   item,
   onRemove,
   onToggle,
 }: {
-  item: Todo;
-  onRemove: (id: number) => void;
-  onToggle: (id: number) => void;
+  item: Todo
+  onRemove: (id: number) => void
+  onToggle: (id: number) => void
 }) {
-  const [_, startTransition] = useTransition();
+  const [_, startTransition] = useTransition()
 
   return (
     <li className="flex items-center justify-between rounded bg-white/5 p-6 text-white">
@@ -26,8 +25,8 @@ export function Todo({
           className="p-1 text-3xl"
           onClick={() => {
             startTransition(() => {
-              onToggle(item.id);
-            });
+              onToggle(item.id)
+            })
           }}
         >
           {item.completed ? "✅" : "☑️"}
@@ -38,8 +37,8 @@ export function Todo({
         className="p-1 flex items-center justify-between transition hover:bg-white/10 rounded"
         onClick={() => {
           startTransition(() => {
-            onRemove(item.id);
-          });
+            onRemove(item.id)
+          })
         }}
       >
         <svg
@@ -50,13 +49,9 @@ export function Todo({
           stroke="currentColor"
           className="size-6"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M6 18 18 6M6 6l12 12"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
       </button>
     </li>
-  );
+  )
 }

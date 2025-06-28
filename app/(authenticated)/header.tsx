@@ -1,4 +1,4 @@
-import { UserButton } from "./user-button";
+import { UserButton } from "./user-button"
 
 export function Header() {
   return (
@@ -26,5 +26,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  );
+  )
 }

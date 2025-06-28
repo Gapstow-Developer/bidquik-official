@@ -1,18 +1,16 @@
-import { authMiddleware } from "@clerk/nextjs" // Changed back to authMiddleware
+import { authMiddleware } from "@clerk/nextjs" // ✅ Correct import
 
 // Public (unauthenticated) routes – everything else requires sign-in.
 export default authMiddleware({
-  // Changed back to authMiddleware
   publicRoutes: [
-    "/", // landing page
-    "/welcome", // first-time DB creation
-    "/sign-in(.*)", // Clerk sign-in
-    "/sign-up(.*)", // Clerk sign-up
-    "/api/webhooks/(.*)", // webhooks stay public
+    "/", // Home
+    "/welcome", // Onboarding
+    "/sign-in(.*)", // All sign-in routes
+    "/sign-up(.*)", // All sign-up routes
+    "/api/webhooks/(.*)", // Webhooks should remain unauthenticated
   ],
 })
 
 export const config = {
-  // Run the middleware for every route except static files and Next.js internals.
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"], // ✅ Exclude static files & Next internals
 }

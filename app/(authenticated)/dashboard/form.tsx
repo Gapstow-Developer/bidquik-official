@@ -1,17 +1,15 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import { useFormStatus } from "react-dom";
-
-import { addTodo } from "./actions";
+import { useRef } from "react"
+import { useFormStatus } from "react-dom"
 
 export function Form({ onSubmit }: { onSubmit: (formData: FormData) => void }) {
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (formData: FormData) => {
-    await onSubmit(formData);
-    formRef.current?.reset();
-  };
+    await onSubmit(formData)
+    formRef.current?.reset()
+  }
 
   return (
     <form
@@ -34,15 +32,15 @@ export function Form({ onSubmit }: { onSubmit: (formData: FormData) => void }) {
       </div>
       <Submit />
     </form>
-  );
+  )
 }
 
 export function Submit() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
 
   return (
     <button type="submit" aria-disabled={pending} className="sr-only">
       Add
     </button>
-  );
+  )
 }

@@ -49,6 +49,7 @@
     "postgres": "latest",
     "react": "^19",
     "react-dom": "^19",
+    "shadcn": "latest",
     "sql.js": "latest",
     "sqlite3": "latest",
     "svix": "latest",

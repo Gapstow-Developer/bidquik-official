@@ -1,35 +1,35 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation"
 
-import { checkDatabaseExists, createUserDatabase } from "../utils";
+import { checkDatabaseExists, createUserDatabase } from "../utils"
 
 export async function GET() {
-  const { userId } = auth().protect();
+  const { userId } = auth().protect()
 
-  const databaseExists = await checkDatabaseExists();
+  const databaseExists = await checkDatabaseExists()
 
   if (databaseExists) {
-    return redirect("/dashboard");
+    return redirect("/dashboard")
   }
 
   if (!userId) {
-    return redirect("/sign-in");
+    return redirect("/sign-in")
   }
 
   try {
-    const success = await createUserDatabase(userId);
+    const success = await createUserDatabase(userId)
 
     if (!success) {
       return new Response("Error creating database", {
         status: 500,
-      });
+      })
     }
   } catch (err) {
-    console.error("Error creating database:", err);
+    console.error("Error creating database:", err)
     return new Response("Error occurred", {
       status: 500,
-    });
+    })
   }
 
-  redirect("/dashboard");
+  redirect("/dashboard")
 }

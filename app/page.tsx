@@ -1,11 +1,11 @@
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
+import Link from "next/link"
+import { redirect } from "next/navigation"
+import { auth } from "@clerk/nextjs/server"
 
 export default function Page() {
-  const { userId } = auth();
+  const { userId } = auth()
 
-  if (userId) return redirect("/dashboard");
+  if (userId) return redirect("/dashboard")
 
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-6">
@@ -21,9 +21,7 @@ export default function Page() {
           fill="currentColor"
         ></path>
       </svg>
-      <h1 className="text-5xl font-black text-center tracking-tight text-white">
-        Turso Per User Starter
-      </h1>
+      <h1 className="text-5xl font-black text-center tracking-tight text-white">Turso Per User Starter</h1>
       <p className="text-lg text-white/60">
         Database per user demo &mdash;{" "}
         <Link href="/sign-up" className="underline text-[#4FF8D2]">
@@ -39,6 +37,7 @@ export default function Page() {
           href="https://turso.tech"
           className="text-white hover:text-aquamarine hover:bg-white/5 px-6 py-2.5"
           target="_blank"
+          rel="noreferrer"
         >
           What is Turso?
         </a>
@@ -46,10 +45,11 @@ export default function Page() {
           href="https://github.com/notrab/turso-platforms-starter"
           className="text-white hover:text-aquamarine hover:bg-white/5 px-6 py-2.5"
           target="_blank"
+          rel="noreferrer"
         >
           GitHub Repo
         </a>
       </div>
     </div>
-  );
+  )
 }

@@ -1,9 +1,8 @@
+import type React from "react"
 export default async function Layout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-  return (
-    <div className="h-screen flex items-center justify-center">{children}</div>
-  );
+  return <div className="h-screen flex items-center justify-center">{children}</div>
 }

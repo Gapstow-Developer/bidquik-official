@@ -1,67 +1,60 @@
-"use client";
+"use client"
 
-import { useOptimistic } from "react";
-import { InferSelectModel } from "drizzle-orm";
+import { useOptimistic } from "react"
+import type { InferSelectModel } from "drizzle-orm"
 
-import * as schema from "@/db/schema";
-import { Todo } from "./todo";
-import { Form } from "./form";
-import { addTodo, removeTodo, toggleTodo } from "./actions";
+import type * as schema from "@/db/schema"
+import { Todo } from "./todo" // Renamed to avoid conflict with type
+import { Form } from "./form"
+import { addTodo, removeTodo, toggleTodo } from "./actions"
 
-type Todo = InferSelectModel<typeof schema.todos>;
+type TodoType = InferSelectModel<typeof schema.todos>
 
-export function TodoList({ initialTodos }: { initialTodos: Todo[] }) {
+export function TodoList({ initialTodos }: { initialTodos: TodoType[] }) {
   const [optimisticTodos, addOptimisticTodo] = useOptimistic<
-    Todo[],
-    { action: "add" | "remove" | "toggle"; todo: Todo }
+    TodoType[],
+    { action: "add" | "remove" | "toggle"; todo: TodoType }
   >(initialTodos, (state, { action, todo }) => {
     switch (action) {
       case "add":
-        return [...state, todo];
+        return [...state, todo]
       case "remove":
-        return state.filter((t) => t.id !== todo.id);
+        return state.filter((t) => t.id !== todo.id)
       case "toggle":
-        return state.map((t) =>
-          t.id === todo.id ? { ...t, completed: !t.completed } : t,
-        );
+        return state.map((t) => (t.id === todo.id ? { ...t, completed: !t.completed } : t))
     }
-  });
+  })
 
   const handleAddTodo = async (formData: FormData) => {
-    const description = formData.get("description") as string;
+    const description = formData.get("description") as string
     const newTodo = {
       id: Date.now(), // Temporary ID
       description,
       completed: false,
-    };
-    addOptimisticTodo({ action: "add", todo: newTodo });
-    await addTodo(formData);
-  };
+    } as TodoType // Cast to TodoType
+    addOptimisticTodo({ action: "add", todo: newTodo })
+    await addTodo(formData)
+  }
 
   const handleRemoveTodo = async (id: number) => {
-    addOptimisticTodo({ action: "remove", todo: { id } as Todo });
-    await removeTodo(id);
-  };
+    addOptimisticTodo({ action: "remove", todo: { id } as TodoType })
+    await removeTodo(id)
+  }
 
   const handleToggleTodo = async (id: number) => {
     addOptimisticTodo({
       action: "toggle",
-      todo: optimisticTodos.find((t) => t.id === id) as Todo,
-    });
-    await toggleTodo(id);
-  };
+      todo: optimisticTodos.find((t) => t.id === id) as TodoType,
+    })
+    await toggleTodo(id)
+  }
 
   return (
     <div className="space-y-3">
       {optimisticTodos.map((todo) => (
-        <Todo
-          key={todo.id}
-          item={todo}
-          onRemove={handleRemoveTodo}
-          onToggle={handleToggleTodo}
-        />
+        <Todo key={todo.id} item={todo} onRemove={handleRemoveTodo} onToggle={handleToggleTodo} />
       ))}
       <Form onSubmit={handleAddTodo} />
     </div>
-  );
+  )
 }
