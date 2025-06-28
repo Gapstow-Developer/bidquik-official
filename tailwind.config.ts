@@ -7,9 +7,8 @@ const config: Config = {
   theme: {
     ...defaultConfig.theme,
     extend: {
-      ...defaultConfig.theme.extend,
+      ...defaultConfig.theme.extend.colors,
       colors: {
-        ...defaultConfig.theme.extend.colors,
         aquamarine: "#4ff8d2",
         "rich-black": "#011618",
         "brunswick-green": "#154F47",
