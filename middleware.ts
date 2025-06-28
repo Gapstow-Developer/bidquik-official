@@ -1,4 +1,4 @@
-import { authMiddleware } from "@clerk/nextjs" // ✅ Correct import
+import { authMiddleware } from "@clerk/nextjs/server" // This is the correct import for current Clerk versions
 
 // Public (unauthenticated) routes – everything else requires sign-in.
 export default authMiddleware({
@@ -12,5 +12,5 @@ export default authMiddleware({
 })
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"], // ✅ Exclude static files & Next internals
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"], // Exclude static files & Next internals
 }
