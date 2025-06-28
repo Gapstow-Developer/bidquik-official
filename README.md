@@ -49,10 +49,10 @@ Start building your Turso powered platform in a few simple steps...
 
    Begin by cloning this repository to your machine:
 
-   ```bash
+   \`\`\`bash
    git clone https://github.com/notrab/turso-per-user-starter.git
    cd turso-per-user-starter
-   ```
+   \`\`\`
 
    </details>
 
@@ -61,10 +61,10 @@ Start building your Turso powered platform in a few simple steps...
 
    Run the following:
 
-   ```bash
+   \`\`\`bash
    cp .env.example .env
    npm install
-   ```
+   \`\`\`
 
    </details>
 
@@ -73,18 +73,18 @@ Start building your Turso powered platform in a few simple steps...
 
    Follow the instructions to install the [Turso CLI](https://docs.turso.tech/cli/installation), and then run the following:
 
-   ```bash
+   \`\`\`bash
    turso db create <database-name>
-   ```
+   \`\`\`
 
    > Alternatively, you can [sign up](https://app.turso.tech) on the web, and create a new database from there.
 
    Now update `.env` to include your organization, and database name:
 
-   ```bash
+   \`\`\`bash
    TURSO_ORG=
    TURSO_DATABASE_NAME=
-   ```
+   \`\`\`
 
    > The `TURSO_ORG` can be your personal username, or the name of any organization you have with other users.
 
@@ -95,15 +95,15 @@ Start building your Turso powered platform in a few simple steps...
 
    Run the following:
 
-   ```bash
+   \`\`\`bash
    turso group tokens create <database-name>
-   ```
+   \`\`\`
 
    Now update `.env` to include the group token:
 
-   ```bash
+   \`\`\`bash
    TURSO_GROUP_AUTH_TOKEN=
-   ```
+   \`\`\`
 
    > If you didn't already have one, a new group will be created for you with the name `default`.
 
@@ -114,9 +114,9 @@ Start building your Turso powered platform in a few simple steps...
 
    Run the following:
 
-   ```bash
+   \`\`\`bash
    npm run db:migrate
-   ```
+   \`\`\`
 
    > If you make changes to `db/schema.ts`, make sure to run `npm run db:generate` to create the migrations, and `npm run db:migrate` to apply them.
 
@@ -127,15 +127,15 @@ Start building your Turso powered platform in a few simple steps...
 
    Run the following:
 
-   ```bash
+   \`\`\`bash
    turso auth api-tokens mint clerk
-   ```
+   \`\`\`
 
    Then set the API token in the `.env` file:
 
-   ```bash
+   \`\`\`bash
    TURSO_API_TOKEN=
-   ```
+   \`\`\`
 
   </details>
 
@@ -146,10 +146,10 @@ Start building your Turso powered platform in a few simple steps...
 
    Add your Clerk public key and secret key to the `.env` file:
 
-   ```bash
+   \`\`\`bash
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
    CLERK_SECRET_KEY=
-   ```
+   \`\`\`
 
    </details>
 
@@ -158,9 +158,9 @@ Start building your Turso powered platform in a few simple steps...
 
    Run the following:
 
-   ```bash
+   \`\`\`bash
    npm run dev
-   ```
+   \`\`\`
 
    Now open [http://localhost:3000](http://localhost:3000) with your browser to try out the app!
 
