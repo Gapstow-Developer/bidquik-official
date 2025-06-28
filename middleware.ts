@@ -1,7 +1,8 @@
-import { clerkMiddleware } from "@clerk/nextjs" // This should be clerkMiddleware
+import { authMiddleware } from "@clerk/nextjs" // Changed back to authMiddleware
 
 // Public (unauthenticated) routes – everything else requires sign-in.
-export default clerkMiddleware({
+export default authMiddleware({
+  // Changed back to authMiddleware
   publicRoutes: [
     "/", // landing page
     "/welcome", // first-time DB creation
