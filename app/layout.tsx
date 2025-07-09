@@ -1,30 +1,30 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { ClerkProvider } from "@clerk/nextjs"
-
 import "./globals.css"
+import { SessionProvider } from "@/components/providers/session-provider"
+import { ErrorBoundary } from "@/components/error-boundary"
 
-const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-
-const inter = Inter({ subsets: ["latin"], display: "swap" })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Turso Per User Starter",
-  description: "Database per user starter with Turso, Clerk, and SQLite",
+  title: "Window Cleaning Calculator",
+  description: "Get an instant quote for professional window cleaning services",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <ClerkProvider publishableKey={publishableKey}>
-      <html lang="en">
-        <body className={`bg-rich-black overscroll-none ${inter.className}`}>{children}</body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <ErrorBoundary>
+          <SessionProvider>{children}</SessionProvider>
+        </ErrorBoundary>
+      </body>
+    </html>
   )
 }
